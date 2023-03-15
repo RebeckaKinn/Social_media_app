@@ -2,16 +2,16 @@
 {
     public class Account
     {
-        public string? firstName { get; set; }
-        public string? lastName { get; set; }
-        public string? email { get; set; }
-        public string? password { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+        public string? Email { get; set; }
+        public string? Password { get; set; }
 
     }
 
     public class User
     {
-        public List<Account> accounts { get; set; } = new List<Account>();
+        public List<Account> Accounts { get; set; } = new List<Account>();
         public User()
         {
             CreateAccountList();
@@ -19,10 +19,10 @@
 
         public void CreateAccountList()
         {
-            accounts.Add(new Account { firstName = "Liam", lastName = "Sørensen", email = "liam@email.com", password = "passord123" });
-            accounts.Add(new Account { firstName = "Elisabeth", lastName = "Olsen", email = "elisabeth@email.com", password = "passord123" });
-            accounts.Add(new Account { firstName = "Jørgen", lastName = "Aalvang", email = "jorgen@email.com", password = "123passord" });
-            accounts.Add(new Account { firstName = "Anne Marie", lastName = "Augustus", email = "anne-marie@email.com", password = "123passord" });
+            Accounts.Add(new Account { FirstName = "Liam", LastName = "Sørensen", Email = "liam@email.com", Password = "passord123" });
+            Accounts.Add(new Account { FirstName = "Elisabeth", LastName = "Olsen", Email = "elisabeth@email.com", Password = "passord123" });
+            Accounts.Add(new Account { FirstName = "Jørgen", LastName = "Aalvang", Email = "jorgen@email.com", Password = "123passord" });
+            Accounts.Add(new Account { FirstName = "Anne Marie", LastName = "Augustus", Email = "anne-marie@email.com", Password = "123passord" });
         }
     }
 }
