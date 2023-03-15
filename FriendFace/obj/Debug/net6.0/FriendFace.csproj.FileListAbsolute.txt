@@ -1,0 +1,15 @@
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\bin\Debug\net6.0\FriendFace.exe
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\bin\Debug\net6.0\FriendFace.deps.json
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\bin\Debug\net6.0\FriendFace.runtimeconfig.json
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\bin\Debug\net6.0\FriendFace.dll
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\bin\Debug\net6.0\FriendFace.pdb
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.csproj.AssemblyReference.cache
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.AssemblyInfoInputs.cache
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.AssemblyInfo.cs
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.csproj.CoreCompileInputs.cache
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.dll
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\refint\FriendFace.dll
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.pdb
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\FriendFace.genruntimeconfig.cache
+C:\Users\becka\Documents\Modul3\Social_media_app\FriendFace\obj\Debug\net6.0\ref\FriendFace.dll
