@@ -9,7 +9,7 @@
             Console.WriteLine("WELCOME TO FRIENDFACE - THE ONLY SOCIAL PLATFORM YOU NEED");
             Console.WriteLine("");
             Console.WriteLine("Welcome!");
-            Console.WriteLine("Please enter your email to log in");
+            Console.WriteLine("Please enter your E-mail to log in");
             Console.WriteLine("OR");
             Console.WriteLine("write 'new user' to create account.");
             StartPage(user.Accounts);
@@ -36,12 +36,11 @@
             }
 
         }
-        static void PasswordCheck(List<Account> accounts, string email)
+        static void PasswordCheck(List<Account> accounts, string? email)
         {
             var input = Console.ReadLine();
             foreach (var account in accounts.Select((value, i) => (value, i)))
             {
-
                 if (account.value.Email == email)
                 {
                     if (input == account.value.Password)
@@ -64,7 +63,7 @@
                             input = Console.ReadLine();
                             if (input2 != null)
                             {
-                                Console.WriteLine("Please enter your firstname to log in");
+                                Console.WriteLine("Please enter your E-mail to log in");
                                 Console.WriteLine("OR");
                                 Console.WriteLine("write 'new user' to create account.");
                                 StartPage(accounts);
@@ -76,7 +75,60 @@
         }
         static void CreateAccount(List<Account> accounts)
         {
-            Console.WriteLine($"{accounts.Count} accounts");
+            Console.WriteLine("Welcome to your start of your FRIENDFACE journey!");
+            Console.WriteLine("Please write your information carefully.");
+            Console.WriteLine("");
+            Console.WriteLine("Please enter your firstname.");
+            var firstName = Console.ReadLine();
+            string? firstname = Convert.ToString(firstName);
+            Console.WriteLine("Please enter your lastname.");
+            var lastName = Console.ReadLine();
+            string? lastname = Convert.ToString(lastName);
+            Console.WriteLine("Please enter your prefered E-mail adress.");
+            var eMail = Console.ReadLine();
+            string? email = Convert.ToString(eMail);
+            Console.WriteLine("Please enter a password.");
+            var password1Input = Console.ReadLine();
+            string? password1 = Convert.ToString(password1Input);
+            Console.WriteLine("Please right your password again.");
+            var password2Input = Console.ReadLine();
+            string? password2 = Convert.ToString(password2Input);
+            if (password1 == password2)
+            {
+                Console.WriteLine("Great! We have everything we need to make you a new profile!");
+                Console.WriteLine($"Nice to meed you {firstname} {lastname}!");
+                Console.WriteLine($"Your E-mail adress is {email} and your password is {password1}.");
+                Console.WriteLine("");
+                Console.WriteLine("Write:");
+                Console.WriteLine("YES - confirm account and log in.");
+                Console.WriteLine("BACK - back to create account.");
+                Console.WriteLine("or anything else to restart the prosess.");
+                var choice = Console.ReadLine();
+                if (choice == "yes")
+                {
+                    accounts.Add(new Account { FirstName = firstname, LastName = lastname, Email = email, Password = password1 });
+                    Console.WriteLine("Account saved! Please log in.");
+                    Console.WriteLine("----------------------");
+                    Console.WriteLine("Please enter your E-mail to log in");
+                    Console.WriteLine("OR");
+                    Console.WriteLine("write 'new user' to create account.");
+                    StartPage(accounts);
+                }
+                else if (choice == "back")
+                {
+                    CreateAccount(accounts);
+                }
+                else
+                {
+                    Console.WriteLine("No changes were saved.");
+                    Console.WriteLine("----------------------");
+                    Console.WriteLine("Please enter your E-mail to log in");
+                    Console.WriteLine("OR");
+                    Console.WriteLine("write 'new user' to create account.");
+                    StartPage(accounts);
+                }
+            }
+
         }
 
         static void MainAccount(int index)
