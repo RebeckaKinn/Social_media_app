@@ -155,9 +155,25 @@
 
         static void MainAccount(int index)
         {
+            Menu();
             User user = new();
             List<Account> accounts = user.Accounts;
-            Console.WriteLine($"Welcome {accounts[index].FirstName} {accounts[index].LastName}");
+            Console.WriteLine($"Welcome {accounts[index].FirstName} {accounts[index].LastName} to your main page.");
+            Console.WriteLine("You can redirect anywhere at any time by using the menu commands above.");
+
+            Friend count = new Friend();
+            List<int> Friends = count.Friends;
+            if (Friends.Contains(accounts[index].ID))
+            {
+                Console.WriteLine($"You have {Friends.Count} friends.");
+            }
+
+
+
+
+
+            var currentUser = Console.ReadLine();
+
 
         }
 

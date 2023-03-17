@@ -63,8 +63,16 @@
     {
         public List<string> menu = new List<string>
         {
+            "_________________________",
             "MENU COMMANDS:",
             "",
+            "MAIN - back to main page",
+            "FRIENDS - view friends",
+            "ADD - find new people",
+            "FEED - comments and news",
+            "CHAT - chat with a friend",
+            "LOG OUT",
+            "-------------------------"
         };
     }
 }
