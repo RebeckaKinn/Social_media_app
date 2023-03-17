@@ -153,6 +153,18 @@
             }
         }
 
+        static void MenuCommands(int index)
+        {
+            var currentUser = Console.ReadLine();
+            if (currentUser == "main") MainAccount(index);
+            else if (currentUser == "friends") ShowFriends(index);
+            else if (currentUser == "add") ShowNewFriends(index);
+            else if (currentUser == "feed") ShowFeed(index);
+            else if (currentUser == "chat") ShowChat(index);
+            else if (currentUser == "log out") LogOut(index);
+            else Menu();
+        }
+
         static void MainAccount(int index)
         {
             Menu();
@@ -168,57 +180,8 @@
                 Console.WriteLine($"You have {Friends.Count} friends.");
             }
 
-
-
-
-
-            var currentUser = Console.ReadLine();
-
-
+            MenuCommands(index);
         }
 
-        //static void Login(List<Account> accounts, string currentName)
-        //{
-        //    Console.WriteLine("Please enter your lastname.");
-        //    var input = Console.ReadLine();
-        //    foreach (var person in accounts)
-        //    {
-        //        if (person.FirstName == currentName && input == person.LastName)
-        //        {
-
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Wrong input detected. Please try again or");
-        //            Console.WriteLine("write 'back' to the start menu.");
-        //            input = Console.ReadLine();
-        //            if (input == "back")
-        //            {
-        //                Console.WriteLine("Please enter your firstname to log in");
-        //                Console.WriteLine("OR");
-        //                Console.WriteLine("write 'new user' to create account.");
-        //                StartPage(accounts);
-        //            }
-        //            else if (person.FirstName == currentName && input == person.LastName)
-        //            {
-        //                PasswordCheck(accounts, person.FirstName, person.LastName);
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("You have written your lastname wrong");
-        //                Console.WriteLine("too many times. Press any button to continue.");
-        //                input = Console.ReadLine();
-        //                if (input != null)
-        //                {
-        //                    Console.WriteLine("Please enter your firstname to log in");
-        //                    Console.WriteLine("OR");
-        //                    Console.WriteLine("write 'new user' to create account.");
-        //                    StartPage(accounts);
-        //                }
-        //            }
-        //        }
-
-        //    }
-        //}
     }
 }
