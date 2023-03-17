@@ -143,6 +143,16 @@
 
         }
 
+        static void Menu()
+        {
+            Menu menu = new Menu();
+            List<string> choices = menu.menu;
+            foreach (var choice in choices)
+            {
+                Console.WriteLine(choice);
+            }
+        }
+
         static void MainAccount(int index)
         {
             User user = new();
