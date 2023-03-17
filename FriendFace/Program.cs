@@ -5,13 +5,16 @@
 
         static void Main(string[] args)
         {
+            IntroLines introLines = new IntroLines();
+            List<string> intro = introLines.intro;
             User user = new();
             Console.WriteLine("WELCOME TO FRIENDFACE - THE ONLY SOCIAL PLATFORM YOU NEED");
             Console.WriteLine("");
             Console.WriteLine("Welcome!");
-            Console.WriteLine("Please enter your E-mail to log in");
-            Console.WriteLine("OR");
-            Console.WriteLine("write 'new user' to create account.");
+            foreach (var line in intro)
+            {
+                Console.WriteLine(line);
+            }
             StartPage(user.Accounts);
         }
         static void StartPage(List<Account> accounts)
@@ -63,9 +66,12 @@
                             input = Console.ReadLine();
                             if (input2 != null)
                             {
-                                Console.WriteLine("Please enter your E-mail to log in");
-                                Console.WriteLine("OR");
-                                Console.WriteLine("write 'new user' to create account.");
+                                IntroLines introLines = new IntroLines();
+                                List<string> intro = introLines.intro;
+                                foreach (var line in intro)
+                                {
+                                    Console.WriteLine(line);
+                                }
                                 StartPage(accounts);
                             }
                         }
@@ -75,10 +81,12 @@
         }
         static void CreateAccount(List<Account> accounts)
         {
-            Console.WriteLine("Welcome to your start of your FRIENDFACE journey!");
-            Console.WriteLine("Please write your information carefully.");
-            Console.WriteLine("");
-            Console.WriteLine("Please enter your firstname.");
+            CreateAccountLines lines = new CreateAccountLines();
+            List<string> createAccount = lines.createAccount;
+            foreach (var line in createAccount)
+            {
+                Console.WriteLine(line);
+            }
             var firstName = Console.ReadLine();
             string? firstname = Convert.ToString(firstName);
             Console.WriteLine("Please enter your lastname.");
@@ -96,22 +104,25 @@
             if (password1 == password2)
             {
                 Console.WriteLine("Great! We have everything we need to make you a new profile!");
-                Console.WriteLine($"Nice to meed you {firstname} {lastname}!");
-                Console.WriteLine($"Your E-mail adress is {email} and your password is {password1}.");
-                Console.WriteLine("");
-                Console.WriteLine("Write:");
-                Console.WriteLine("YES - confirm account and log in.");
-                Console.WriteLine("BACK - back to create account.");
-                Console.WriteLine("or anything else to restart the prosess.");
+                Console.WriteLine($"Name: {firstname} {lastname}. E-mail: {email}. Password: {password1}");
+                CheckAccountLines writeLine = new CheckAccountLines();
+                List<string> checkAccount = writeLine.checkAccount;
+                foreach (var line in checkAccount)
+                {
+                    Console.WriteLine(line);
+                }
+                StartPage(accounts);
                 var choice = Console.ReadLine();
                 if (choice == "yes")
                 {
-                    accounts.Add(new Account { FirstName = firstname, LastName = lastname, Email = email, Password = password1 });
-                    Console.WriteLine("Account saved! Please log in.");
-                    Console.WriteLine("----------------------");
-                    Console.WriteLine("Please enter your E-mail to log in");
-                    Console.WriteLine("OR");
-                    Console.WriteLine("write 'new user' to create account.");
+                    int IDNumber = accounts.Count;
+                    accounts.Add(new Account { ID = IDNumber, FirstName = firstname, LastName = lastname, Email = email, Password = password1 });
+                    UpdateAccountLines write = new UpdateAccountLines();
+                    List<string> uploadAccount = write.uploadAccount;
+                    foreach (var line in uploadAccount)
+                    {
+                        Console.WriteLine(line);
+                    }
                     StartPage(accounts);
                 }
                 else if (choice == "back")
@@ -120,11 +131,12 @@
                 }
                 else
                 {
-                    Console.WriteLine("No changes were saved.");
-                    Console.WriteLine("----------------------");
-                    Console.WriteLine("Please enter your E-mail to log in");
-                    Console.WriteLine("OR");
-                    Console.WriteLine("write 'new user' to create account.");
+                    DispatchAccountLines write = new DispatchAccountLines();
+                    List<string> dispatchAccount = write.dispatchAccount;
+                    foreach (var line in dispatchAccount)
+                    {
+                        Console.WriteLine(line);
+                    }
                     StartPage(accounts);
                 }
             }
@@ -133,8 +145,10 @@
 
         static void MainAccount(int index)
         {
-            Console.WriteLine("hei");
-            //starter på start page på nytt og tar input og angir som feil med en gang. 
+            User user = new();
+            List<Account> accounts = user.Accounts;
+            Console.WriteLine($"Welcome {accounts[index].FirstName} {accounts[index].LastName}");
+
         }
 
         //static void Login(List<Account> accounts, string currentName)
