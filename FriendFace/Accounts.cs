@@ -31,7 +31,7 @@
     {
         public List<int> Friends { get; set; } = new List<int>
         {
-            1, 2,
+            1, 2, 3,
         };
 
     }

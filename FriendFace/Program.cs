@@ -143,7 +143,7 @@
 
         }
 
-        static void Menu()
+        static void Menu(int index)
         {
             Menu menu = new Menu();
             List<string> choices = menu.menu;
@@ -162,25 +162,110 @@
             else if (currentUser == "feed") ShowFeed(index);
             else if (currentUser == "chat") ShowChat(index);
             else if (currentUser == "log out") LogOut(index);
-            else Menu();
+            else
+            {
+                Menu(index);
+                MenuCommands(index);
+            };
         }
 
         static void MainAccount(int index)
         {
-            Menu();
+            Menu(index);
             User user = new();
             List<Account> accounts = user.Accounts;
             Console.WriteLine($"Welcome {accounts[index].FirstName} {accounts[index].LastName} to your main page.");
             Console.WriteLine("You can redirect anywhere at any time by using the menu commands above.");
-
             Friend count = new Friend();
             List<int> Friends = count.Friends;
             if (Friends.Contains(accounts[index].ID))
             {
-                Console.WriteLine($"You have {Friends.Count} friends.");
+                int myFriends = Friends.Count - 1;
+                Console.WriteLine($"You have {myFriends} friends.");
             }
 
             MenuCommands(index);
+        }
+
+        static void ShowFriends(int index)
+        {
+            User user = new();
+            List<Account> accounts = user.Accounts;
+            Friend count = new Friend();
+            List<int> Friends = count.Friends;
+            Console.WriteLine("YOUR FRIENDS");
+            Console.WriteLine("----------------------");
+            if (Friends.Contains(accounts[index].ID))
+            {
+                foreach (var users in accounts)
+                    foreach (var friend in Friends)
+                    {
+                        if (friend == users.ID && friend != accounts[index].ID)
+                            Console.WriteLine($"{users.FirstName} {users.LastName}");
+                    }
+            }
+            MenuCommands(index);
+        }
+
+        static void ShowNewFriends(int index)
+        {
+            Console.WriteLine("Find new people!");
+            Console.WriteLine("________________");
+            User user = new();
+            List<Account> accounts = user.Accounts;
+            Friend count = new Friend();
+            List<int> Friends = count.Friends;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                foreach (var person in Friends)
+                {
+                    if (person != accounts[i].ID)
+                    {
+                        Console.WriteLine($"{accounts[i].FirstName} {accounts[i].LastName}.");
+                    }
+                    //else
+                    //{
+                    //    Console.WriteLine("NO MORE PEOPLE TO ADD");
+                    //    MainAccount(index);
+                    //}
+                }
+            }
+            Console.WriteLine("Write the first name to add, or 'back' to your page.");
+            var newChoice = Console.ReadLine();
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (newChoice == $"{accounts[i].FirstName}")
+                {
+                    Console.WriteLine("Added!");
+                    ShowNewFriends(index);
+                }
+
+            }
+            if (newChoice == "back") MainAccount(index);
+        }
+        static void ShowFeed(int index)
+        {
+            MenuCommands(index);
+        }
+        static void ShowChat(int index)
+        {
+            MenuCommands(index);
+        }
+
+        static void LogOut(int index)
+        {
+            User user = new();
+            List<Account> accounts = user.Accounts;
+            Console.WriteLine($"You are now logged out of {accounts[index].FirstName} {accounts[index].LastName}'s account.");
+            Console.WriteLine("Welcome back soon!");
+            Console.WriteLine("____________________________________");
+            IntroLines introLines = new IntroLines();
+            List<string> intro = introLines.intro;
+            foreach (var line in intro)
+            {
+                Console.WriteLine(line);
+            }
+            StartPage(accounts);
         }
 
     }
