@@ -1,9 +1,8 @@
 ﻿namespace FriendFace
 {
-    internal class Program
+    public static class Program
     {
-
-        static void Main(string[] args)
+        static public void Main(string[] args)
         {
             Console.WriteLine("WELCOME TO FRIENDFACE - THE ONLY SOCIAL PLATFORM YOU NEED");
             Console.WriteLine("");
@@ -15,8 +14,7 @@
             StartPage();
         }
 
-        //REFER FRIENDS AND ACCOUNTS SO THAT IT DOES NOT MAKE A NEW ONE EACH TIME. 
-        static void StartPage()
+        static public void StartPage()
         {
             var input = Console.ReadLine();
             foreach (var person in User.Accounts)
@@ -36,9 +34,8 @@
                     StartPage();
                 }
             }
-
         }
-        static void PasswordCheck(string? email)
+        static public void PasswordCheck(string? email)
         {
             var input = Console.ReadLine();
             foreach (var account in User.Accounts.Select((value, i) => (value, i)))
@@ -47,7 +44,7 @@
                 {
                     if (input == account.value.Password)
                     {
-                        MainAccount(account.i);
+                        LoggedIn.MainAccount(account.i);
                     }
                     else
                     {
@@ -56,7 +53,7 @@
 
                         if (input2 == account.value.Password)
                         {
-                            MainAccount(account.i);
+                            LoggedIn.MainAccount(account.i);
                         }
                         else
                         {
@@ -76,7 +73,7 @@
                 }
             }
         }
-        static void CreateAccount()
+        static public void CreateAccount()
         {
             foreach (var line in CreateAccountLines.createAccount)
             {
@@ -129,138 +126,6 @@
                     StartPage();
                 }
             }
-
-        }
-
-        static void Menu()
-        {
-            foreach (var choice in MainMenu.menu)
-            {
-                Console.WriteLine(choice);
-            }
-        }
-
-        static void MenuCommands(int index)
-        {
-            var currentUser = Console.ReadLine();
-            if (currentUser == "main") MainAccount(index);
-            else if (currentUser == "friends") ShowFriends(index);
-            else if (currentUser == "add") ShowNewFriends(index);
-            else if (currentUser == "feed") ShowFeed(index);
-            else if (currentUser == "chat") ShowChat(index);
-            else if (currentUser == "log out") LogOut(index);
-            else
-            {
-                Menu();
-                MenuCommands(index);
-            };
-        }
-
-        static void MainAccount(int index)
-        {
-            Menu();
-            Console.WriteLine($"Welcome {User.Accounts[index].FirstName} {User.Accounts[index].LastName} to your main page.");
-            Console.WriteLine("You can redirect anywhere at any time by using the menu commands above.");
-            if (Friend.Friends.Contains(User.Accounts[index].ID))
-            {
-                int myFriends = Friend.Friends.Count - 1;
-                Console.WriteLine($"You have {myFriends} friends.");
-            }
-            MenuCommands(index);
-        }
-
-        static void ShowFriends(int index)
-        {
-            Console.WriteLine("YOUR FRIENDS");
-            Console.WriteLine("----------------------");
-            if (Friend.Friends.Contains(User.Accounts[index].ID))
-            {
-                foreach (var users in User.Accounts)
-                    foreach (var friend in Friend.Friends)
-                    {
-                        if (friend == users.ID && friend != User.Accounts[index].ID)
-                            Console.WriteLine($"{users.FirstName} {users.LastName}");
-                    }
-            }
-            MenuCommands(index);
-        }
-
-        static void ShowNewFriends(int index)
-        {
-            Console.WriteLine("Find new people!");
-            Console.WriteLine("________________");
-            CheckList();
-            if (CheckList() == false)
-            {
-                for (int i = 0; i < User.Accounts.Count; i++)
-                {
-                    if (!Friend.Friends.Contains(User.Accounts[i].ID))
-                    {
-                        Console.WriteLine($"{User.Accounts[i].FirstName} {User.Accounts[i].LastName}.");
-                    }
-                }
-                Console.WriteLine("Write the whole name to add, or 'back' to your page.");
-                NewChoiceInput(index);
-            }
-            else
-            {
-                Console.WriteLine("NO MORE PEOPLE TO ADD");
-                MenuCommands(index); ;
-            }
-        }
-
-        static void NewChoiceInput(int index)
-        {
-            var newChoice = Console.ReadLine();
-            for (int i = 0; i < User.Accounts.Count; i++)
-            {
-                if (newChoice == $"{User.Accounts[i].FirstName} {User.Accounts[i].LastName}")
-                {
-                    Friend.Friends.Add(User.Accounts[i].ID);
-                    Console.WriteLine("Added!");
-                    ShowNewFriends(index);
-                }
-            }
-            if (newChoice == "back") MainAccount(index);
-            else
-            {
-                Console.WriteLine("Try again.");
-                NewChoiceInput(index);
-            }
-        }
-
-        public static bool CheckList()
-        {
-            bool areEqual = true;
-            for (int i = 0; i < User.Accounts.Count; i++)
-            {
-                if (!Friend.Friends.Contains(User.Accounts[i].ID))
-                {
-                    areEqual = false;
-                    break;
-                }
-            }
-            return areEqual;
-        }
-        static void ShowFeed(int index)
-        {
-            MenuCommands(index);
-        }
-        static void ShowChat(int index)
-        {
-            MenuCommands(index);
-        }
-
-        static void LogOut(int index)
-        {
-            Console.WriteLine($"You are now logged out of {User.Accounts[index].FirstName} {User.Accounts[index].LastName}'s account.");
-            Console.WriteLine("Welcome back soon!");
-            Console.WriteLine("____________________________________");
-            foreach (var line in IntroLines.intro)
-            {
-                Console.WriteLine(line);
-            }
-            StartPage();
         }
 
     }

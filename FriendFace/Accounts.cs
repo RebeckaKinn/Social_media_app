@@ -7,9 +7,7 @@
         public string? Email { get; set; }
         public string? Password { get; set; }
         public int ID { get; set; }
-
     }
-
     public class User
     {
         public static List<Account> Accounts { get; set; } = new List<Account>();
@@ -17,7 +15,6 @@
         {
             CreateAccountList();
         }
-
         public void CreateAccountList()
         {
             Accounts.Add(new Account { ID = 1, FirstName = "Liam", LastName = "Sørensen", Email = "liam@email.com", Password = "passord123" });
@@ -25,14 +22,5 @@
             Accounts.Add(new Account { ID = 3, FirstName = "Jørgen", LastName = "Aalvang", Email = "jorgen@email.com", Password = "123passord" });
             Accounts.Add(new Account { ID = 4, FirstName = "Anne Marie", LastName = "Augustus", Email = "anne-marie@email.com", Password = "123passord" });
         }
-    }
-
-    public class Friend
-    {
-        public static List<int> Friends { get; set; } = new List<int>
-        {
-            1, 2, 3,
-        };
-
     }
 }
