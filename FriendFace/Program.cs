@@ -215,33 +215,58 @@
             List<Account> accounts = user.Accounts;
             Friend count = new Friend();
             List<int> Friends = count.Friends;
-            for (int i = 0; i < accounts.Count; i++)
+            CheckList(Friends, accounts);
+            if (CheckList(Friends, accounts) == false)
             {
-                foreach (var person in Friends)
+                for (int i = 0; i < accounts.Count; i++)
                 {
-                    if (person != accounts[i].ID)
+                    if (!Friends.Contains(accounts[i].ID))
                     {
                         Console.WriteLine($"{accounts[i].FirstName} {accounts[i].LastName}.");
                     }
-                    //else
-                    //{
-                    //    Console.WriteLine("NO MORE PEOPLE TO ADD");
-                    //    MainAccount(index);
-                    //}
                 }
+                Console.WriteLine("Write the whole name to add, or 'back' to your page.");
+                NewChoiceInput(Friends, accounts, index);
             }
-            Console.WriteLine("Write the first name to add, or 'back' to your page.");
+            else
+            {
+                Console.WriteLine("NO MORE PEOPLE TO ADD");
+                MenuCommands(index); ;
+            }
+        }
+
+        static void NewChoiceInput(List<int> Friends, List<Account> accounts, int index)
+        {
             var newChoice = Console.ReadLine();
             for (int i = 0; i < accounts.Count; i++)
             {
-                if (newChoice == $"{accounts[i].FirstName}")
+                if (newChoice == $"{accounts[i].FirstName} {accounts[i].LastName}")
                 {
+                    Friends.Add(accounts[i].ID);
                     Console.WriteLine("Added!");
                     ShowNewFriends(index);
                 }
-
             }
             if (newChoice == "back") MainAccount(index);
+            else
+            {
+                Console.WriteLine("Try again.");
+                NewChoiceInput(Friends, accounts, index);
+            }
+        }
+
+        public static bool CheckList(List<int> Friends, List<Account> accounts)
+        {
+            bool areEqual = true;
+            for (int i = 0; i < accounts.Count; i++)
+            {
+                if (!Friends.Contains(accounts[i].ID))
+                {
+                    areEqual = false;
+                    break;
+                }
+            }
+            return areEqual;
         }
         static void ShowFeed(int index)
         {
