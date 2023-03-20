@@ -2,7 +2,7 @@
 {
     public class IntroLines
     {
-        public List<string> intro = new List<string>
+        public static List<string> intro = new List<string>
         {
             "Please enter your E-mail to log in",
             "OR",
@@ -14,7 +14,7 @@
 
     public class CreateAccountLines
     {
-        public List<string> createAccount = new List<string>
+        public static List<string> createAccount = new List<string>
         {
             "Welcome to your start of your FRIENDFACE journey!",
             "Please write your information carefully.",
@@ -25,7 +25,7 @@
 
     public class UpdateAccountLines
     {
-        public List<string> uploadAccount = new List<string>
+        public static List<string> uploadAccount = new List<string>
         {
             "Account saved! Please log in.",
             "----------------------",
@@ -37,7 +37,7 @@
 
     public class DispatchAccountLines
     {
-        public List<string> dispatchAccount = new List<string>
+        public static List<string> dispatchAccount = new List<string>
         {
             "No changes were saved.",
             "----------------------",
@@ -49,7 +49,7 @@
 
     public class CheckAccountLines
     {
-        public List<string> checkAccount = new List<string>
+        public static List<string> checkAccount = new List<string>
         {
             "",
             "Write:",
@@ -61,7 +61,7 @@
 
     public class Menu
     {
-        public List<string> menu = new List<string>
+        public static List<string> menu = new List<string>
         {
             "_________________________",
             "MENU COMMANDS:",

@@ -5,44 +5,43 @@
 
         static void Main(string[] args)
         {
-            IntroLines introLines = new IntroLines();
-            List<string> intro = introLines.intro;
-            User user = new();
             Console.WriteLine("WELCOME TO FRIENDFACE - THE ONLY SOCIAL PLATFORM YOU NEED");
             Console.WriteLine("");
             Console.WriteLine("Welcome!");
-            foreach (var line in intro)
+            foreach (var line in IntroLines.intro)
             {
                 Console.WriteLine(line);
             }
-            StartPage(user.Accounts);
+            StartPage();
         }
-        static void StartPage(List<Account> accounts)
+
+        //REFER FRIENDS AND ACCOUNTS SO THAT IT DOES NOT MAKE A NEW ONE EACH TIME. 
+        static void StartPage()
         {
             var input = Console.ReadLine();
-            foreach (var person in accounts)
+            foreach (var person in User.Accounts)
             {
                 if (input == person.Email)
                 {
                     Console.WriteLine("Please enter your password.");
-                    PasswordCheck(accounts, person.Email);
+                    PasswordCheck(person.Email);
                 }
                 else if (input == "new user")
                 {
-                    CreateAccount(accounts);
+                    CreateAccount();
                 }
                 else
                 {
                     Console.WriteLine("Please enter a valid answer below.");
-                    StartPage(accounts);
+                    StartPage();
                 }
             }
 
         }
-        static void PasswordCheck(List<Account> accounts, string? email)
+        static void PasswordCheck(string? email)
         {
             var input = Console.ReadLine();
-            foreach (var account in accounts.Select((value, i) => (value, i)))
+            foreach (var account in User.Accounts.Select((value, i) => (value, i)))
             {
                 if (account.value.Email == email)
                 {
@@ -66,24 +65,20 @@
                             input = Console.ReadLine();
                             if (input2 != null)
                             {
-                                IntroLines introLines = new IntroLines();
-                                List<string> intro = introLines.intro;
-                                foreach (var line in intro)
+                                foreach (var line in IntroLines.intro)
                                 {
                                     Console.WriteLine(line);
                                 }
-                                StartPage(accounts);
+                                StartPage();
                             }
                         }
                     }
                 }
             }
         }
-        static void CreateAccount(List<Account> accounts)
+        static void CreateAccount()
         {
-            CreateAccountLines lines = new CreateAccountLines();
-            List<string> createAccount = lines.createAccount;
-            foreach (var line in createAccount)
+            foreach (var line in CreateAccountLines.createAccount)
             {
                 Console.WriteLine(line);
             }
@@ -105,49 +100,41 @@
             {
                 Console.WriteLine("Great! We have everything we need to make you a new profile!");
                 Console.WriteLine($"Name: {firstname} {lastname}. E-mail: {email}. Password: {password1}");
-                CheckAccountLines writeLine = new CheckAccountLines();
-                List<string> checkAccount = writeLine.checkAccount;
-                foreach (var line in checkAccount)
+                foreach (var line in CheckAccountLines.checkAccount)
                 {
                     Console.WriteLine(line);
                 }
-                StartPage(accounts);
+                StartPage();
                 var choice = Console.ReadLine();
                 if (choice == "yes")
                 {
-                    int IDNumber = accounts.Count;
-                    accounts.Add(new Account { ID = IDNumber, FirstName = firstname, LastName = lastname, Email = email, Password = password1 });
-                    UpdateAccountLines write = new UpdateAccountLines();
-                    List<string> uploadAccount = write.uploadAccount;
-                    foreach (var line in uploadAccount)
+                    int IDNumber = User.Accounts.Count;
+                    User.Accounts.Add(new Account { ID = IDNumber, FirstName = firstname, LastName = lastname, Email = email, Password = password1 });
+                    foreach (var line in UpdateAccountLines.uploadAccount)
                     {
                         Console.WriteLine(line);
                     }
-                    StartPage(accounts);
+                    StartPage();
                 }
                 else if (choice == "back")
                 {
-                    CreateAccount(accounts);
+                    CreateAccount();
                 }
                 else
                 {
-                    DispatchAccountLines write = new DispatchAccountLines();
-                    List<string> dispatchAccount = write.dispatchAccount;
-                    foreach (var line in dispatchAccount)
+                    foreach (var line in DispatchAccountLines.dispatchAccount)
                     {
                         Console.WriteLine(line);
                     }
-                    StartPage(accounts);
+                    StartPage();
                 }
             }
 
         }
 
-        static void Menu(int index)
+        static void Menu()
         {
-            Menu menu = new Menu();
-            List<string> choices = menu.menu;
-            foreach (var choice in choices)
+            foreach (var choice in MainMenu.menu)
             {
                 Console.WriteLine(choice);
             }
@@ -164,43 +151,34 @@
             else if (currentUser == "log out") LogOut(index);
             else
             {
-                Menu(index);
+                Menu();
                 MenuCommands(index);
             };
         }
 
         static void MainAccount(int index)
         {
-            Menu(index);
-            User user = new();
-            List<Account> accounts = user.Accounts;
-            Console.WriteLine($"Welcome {accounts[index].FirstName} {accounts[index].LastName} to your main page.");
+            Menu();
+            Console.WriteLine($"Welcome {User.Accounts[index].FirstName} {User.Accounts[index].LastName} to your main page.");
             Console.WriteLine("You can redirect anywhere at any time by using the menu commands above.");
-            Friend count = new Friend();
-            List<int> Friends = count.Friends;
-            if (Friends.Contains(accounts[index].ID))
+            if (Friend.Friends.Contains(User.Accounts[index].ID))
             {
-                int myFriends = Friends.Count - 1;
+                int myFriends = Friend.Friends.Count - 1;
                 Console.WriteLine($"You have {myFriends} friends.");
             }
-
             MenuCommands(index);
         }
 
         static void ShowFriends(int index)
         {
-            User user = new();
-            List<Account> accounts = user.Accounts;
-            Friend count = new Friend();
-            List<int> Friends = count.Friends;
             Console.WriteLine("YOUR FRIENDS");
             Console.WriteLine("----------------------");
-            if (Friends.Contains(accounts[index].ID))
+            if (Friend.Friends.Contains(User.Accounts[index].ID))
             {
-                foreach (var users in accounts)
-                    foreach (var friend in Friends)
+                foreach (var users in User.Accounts)
+                    foreach (var friend in Friend.Friends)
                     {
-                        if (friend == users.ID && friend != accounts[index].ID)
+                        if (friend == users.ID && friend != User.Accounts[index].ID)
                             Console.WriteLine($"{users.FirstName} {users.LastName}");
                     }
             }
@@ -211,22 +189,18 @@
         {
             Console.WriteLine("Find new people!");
             Console.WriteLine("________________");
-            User user = new();
-            List<Account> accounts = user.Accounts;
-            Friend count = new Friend();
-            List<int> Friends = count.Friends;
-            CheckList(Friends, accounts);
-            if (CheckList(Friends, accounts) == false)
+            CheckList();
+            if (CheckList() == false)
             {
-                for (int i = 0; i < accounts.Count; i++)
+                for (int i = 0; i < User.Accounts.Count; i++)
                 {
-                    if (!Friends.Contains(accounts[i].ID))
+                    if (!Friend.Friends.Contains(User.Accounts[i].ID))
                     {
-                        Console.WriteLine($"{accounts[i].FirstName} {accounts[i].LastName}.");
+                        Console.WriteLine($"{User.Accounts[i].FirstName} {User.Accounts[i].LastName}.");
                     }
                 }
                 Console.WriteLine("Write the whole name to add, or 'back' to your page.");
-                NewChoiceInput(Friends, accounts, index);
+                NewChoiceInput(index);
             }
             else
             {
@@ -235,14 +209,14 @@
             }
         }
 
-        static void NewChoiceInput(List<int> Friends, List<Account> accounts, int index)
+        static void NewChoiceInput(int index)
         {
             var newChoice = Console.ReadLine();
-            for (int i = 0; i < accounts.Count; i++)
+            for (int i = 0; i < User.Accounts.Count; i++)
             {
-                if (newChoice == $"{accounts[i].FirstName} {accounts[i].LastName}")
+                if (newChoice == $"{User.Accounts[i].FirstName} {User.Accounts[i].LastName}")
                 {
-                    Friends.Add(accounts[i].ID);
+                    Friend.Friends.Add(User.Accounts[i].ID);
                     Console.WriteLine("Added!");
                     ShowNewFriends(index);
                 }
@@ -251,16 +225,16 @@
             else
             {
                 Console.WriteLine("Try again.");
-                NewChoiceInput(Friends, accounts, index);
+                NewChoiceInput(index);
             }
         }
 
-        public static bool CheckList(List<int> Friends, List<Account> accounts)
+        public static bool CheckList()
         {
             bool areEqual = true;
-            for (int i = 0; i < accounts.Count; i++)
+            for (int i = 0; i < User.Accounts.Count; i++)
             {
-                if (!Friends.Contains(accounts[i].ID))
+                if (!Friend.Friends.Contains(User.Accounts[i].ID))
                 {
                     areEqual = false;
                     break;
@@ -279,18 +253,14 @@
 
         static void LogOut(int index)
         {
-            User user = new();
-            List<Account> accounts = user.Accounts;
-            Console.WriteLine($"You are now logged out of {accounts[index].FirstName} {accounts[index].LastName}'s account.");
+            Console.WriteLine($"You are now logged out of {User.Accounts[index].FirstName} {User.Accounts[index].LastName}'s account.");
             Console.WriteLine("Welcome back soon!");
             Console.WriteLine("____________________________________");
-            IntroLines introLines = new IntroLines();
-            List<string> intro = introLines.intro;
-            foreach (var line in intro)
+            foreach (var line in IntroLines.intro)
             {
                 Console.WriteLine(line);
             }
-            StartPage(accounts);
+            StartPage();
         }
 
     }

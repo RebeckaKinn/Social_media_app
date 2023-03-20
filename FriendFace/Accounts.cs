@@ -12,7 +12,7 @@
 
     public class User
     {
-        public List<Account> Accounts { get; set; } = new List<Account>();
+        public static List<Account> Accounts { get; set; } = new List<Account>();
         public User()
         {
             CreateAccountList();
@@ -29,7 +29,7 @@
 
     public class Friend
     {
-        public List<int> Friends { get; set; } = new List<int>
+        public static List<int> Friends { get; set; } = new List<int>
         {
             1, 2, 3,
         };
