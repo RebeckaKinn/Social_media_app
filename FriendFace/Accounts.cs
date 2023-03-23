@@ -1,26 +1,46 @@
-﻿namespace FriendFace
-{
-    public class Account
-    {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
-        public string? Email { get; set; }
-        public string? Password { get; set; }
-        public int ID { get; set; }
-    }
-    public class User
-    {
-        public static List<Account> Accounts { get; set; } = new List<Account>();
-        public User()
-        {
-            CreateAccountList();
-        }
-        public void CreateAccountList()
-        {
-            Accounts.Add(new Account { ID = 1, FirstName = "Liam", LastName = "Sørensen", Email = "liam@email.com", Password = "passord123" });
-            Accounts.Add(new Account { ID = 2, FirstName = "Elisabeth", LastName = "Olsen", Email = "elisabeth@email.com", Password = "passord123" });
-            Accounts.Add(new Account { ID = 3, FirstName = "Jørgen", LastName = "Aalvang", Email = "jorgen@email.com", Password = "123passord" });
-            Accounts.Add(new Account { ID = 4, FirstName = "Anne Marie", LastName = "Augustus", Email = "anne-marie@email.com", Password = "123passord" });
-        }
-    }
-}
+﻿//namespace FriendFace
+//{
+//    public class Account
+//    {
+//        //lage static? og private!
+//        private string FirstName { get; }
+//        private string LastName { get; }
+//        private string Email { get; }
+//        private string Password;
+//        private int ID { get; }
+//        private static int NextID = 0;
+//        public Account(string firstName, string lastName, string email, string password)
+//        {
+//            FirstName = firstName;
+//            LastName = lastName;
+//            Email = email;
+//            Password = password;
+//            ID = NextID;
+//            NextID++;
+//        }
+
+//        public void Identify()
+//        {
+//            Console.WriteLine($"Navn: {FirstName}. Min ID: {ID}");
+//        }
+//    }
+
+//    //ha metoder for å hente ut informasjon
+//    public class Users
+//    {
+//        //fjerne static?
+//        public List<Account> Accounts { get; set; } = new List<Account>();
+//        public Users()
+//        {
+//            CreateAccountList();
+//        }
+//        public void CreateAccountList()
+//        {
+//            Accounts.Add(new Account("Liam", "Sørensen", "liam@email.com", "passord123"));
+//            Accounts.Add(new Account("Elisabeth", "Olsen", "elisabeth@email.com", "passord123"));
+//            Accounts.Add(new Account("Jørgen", "Aalvang", "jorgen@email.com", "123passord"));
+//            Accounts.Add(new Account("Anne Marie", "Augustus", "anne-marie@email.com", "123passord"));
+//            Accounts.ForEach(e => e.Identify());
+//        }
+//    }
+//}
