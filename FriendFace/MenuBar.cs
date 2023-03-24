@@ -12,10 +12,10 @@
         public static void MenuCommands(Profile currentProfile, List<Profile> ListOfUsers)
         {
             var currentUser = Console.ReadLine();
-            if (currentUser == "main") MainNetwork.MainPage(currentProfile, ListOfUsers);
-            else if (currentUser == "friends") MainNetwork.ShowFriends(currentProfile, ListOfUsers);
-            else if (currentUser == "new") MainNetwork.ShowNewPeople(currentProfile, ListOfUsers);
-            else if (currentUser == "log out") StartPage.LogOut(ListOfUsers);
+            if (currentUser.ToLower() == "main") MainNetwork.MainPage(currentProfile, ListOfUsers);
+            else if (currentUser.ToLower() == "friends") MainNetwork.ShowFriends(currentProfile, ListOfUsers);
+            else if (currentUser.ToLower() == "new") MainNetwork.ShowNewPeople(currentProfile, ListOfUsers);
+            else if (currentUser.ToLower() == "log out") StartPage.LogOut(ListOfUsers);
             else
             {
                 Console.WriteLine("Write a valid answer.");

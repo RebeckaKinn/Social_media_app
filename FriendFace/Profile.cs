@@ -33,12 +33,10 @@
         public void AddFriend(Profile addFriend)
         {
             Friends.Add(addFriend);
-            //addFriend.Friends.Add(); adde venn i vennens venneliste
         }
         public void RemoveFriend(Profile removedFriend)
         {
             Friends.Remove(removedFriend);
-            // må kunne fjerne vennen fra dens venneliste
         }
     }
 }
