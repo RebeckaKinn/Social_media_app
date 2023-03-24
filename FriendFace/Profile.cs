@@ -40,12 +40,5 @@
             Friends.Remove(removedFriend);
             // må kunne fjerne vennen fra dens venneliste
         }
-        public void PrintProfileInfo()
-        {
-            var friendCount = Friends.Count;
-            Console.WriteLine($"Name: {FirstName} {LastName}");
-            Console.WriteLine($"E-mail: {Email}");
-            Console.WriteLine($"Friends: {friendCount}");
-        }
     }
 }

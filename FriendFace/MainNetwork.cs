@@ -2,12 +2,12 @@
 {
     public class MainNetwork
     {
-        public static void MainPage(Profile currentProfile, List<Profile> ListOfUsers)
+        public static void MainPage(Profile currentProfile)
         {
             Console.Clear();
             Console.WriteLine($"Velkommen {currentProfile.FirstName} {currentProfile.LastName}.\n");
             Console.WriteLine($"Friends: {currentProfile.GetFriendlistCount()}");
-            MenuBar.Menu(currentProfile, ListOfUsers);
+            MenuBar.Menu();
         }
         public static void ShowNewPeople(Profile currentProfile, List<Profile> ListOfUsers)
         {
@@ -16,20 +16,21 @@
                 if (profile != currentProfile) Console.WriteLine($"{profile.ID} - {profile.FirstName} {profile.LastName}.");
             }
             Console.WriteLine("Write the number to add to friend list.");
-            var chosenProfile = Convert.ToInt32(Console.ReadLine());
+            var chosenProfile = Console.ReadLine();
             foreach (Profile profile in ListOfUsers)
             {
-                if (chosenProfile == profile.ID)
+                if (Convert.ToInt32(chosenProfile) == profile.ID)
                 {
                     currentProfile.AddFriend(profile);
                     Console.WriteLine("Friend added!\n");
                     ShowNewPeople(currentProfile, ListOfUsers);
                     MenuBar.MenuCommands(currentProfile, ListOfUsers);
                 }
-                else if (chosenProfile != profile.ID)
+                else
                 {
                     Console.WriteLine("Uanble to read command. Returning to main page.\n");
-                    MainPage(currentProfile, ListOfUsers);
+                    Thread.Sleep(2000);
+                    MainPage(currentProfile);
                 }
             }
         }
@@ -39,7 +40,15 @@
             {
                 Console.WriteLine($"{friend.ID} - {friend.FirstName} {friend.LastName}.");
             }
-
+            Console.WriteLine("NUMBER - delete friend");
+            Console.WriteLine("BACK - back to main page");
+            var choiceInput = Console.ReadLine();
+            foreach (Profile friend in currentProfile.Friends)
+            {
+                if (Convert.ToInt32(choiceInput) == friend.ID) currentProfile.RemoveFriend(friend);
+                else if (choiceInput == "back") MainPage(currentProfile);
+                else ShowFriends(currentProfile);
+            }
         }
     }
 }

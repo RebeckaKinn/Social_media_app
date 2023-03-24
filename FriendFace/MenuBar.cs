@@ -2,13 +2,12 @@
 {
     internal class MenuBar
     {
-        public static void Menu(Profile currentProfile, List<Profile> ListOfUsers)
+        public static void Menu()
         {
             foreach (string choice in WriteLines.menu)
             {
                 Console.WriteLine(choice);
             }
-            MenuCommands(currentProfile, ListOfUsers);
         }
         public static void MenuCommands(Profile currentProfile, List<Profile> ListOfUsers)
         {

@@ -32,7 +32,7 @@
             var input = Console.ReadLine();
             if (currentProfile.Password == input)
             {
-                MainNetwork.MainPage(currentProfile, ListOfUsers);
+                MainNetwork.MainPage(currentProfile);
             }
             else
             {
@@ -84,7 +84,7 @@
                     var addUserToList = new Profile(firstname, lastname, email, password1);
                     Console.WriteLine("NEW USER CREATED\n");
                     Thread.Sleep(2000);
-                    MainNetwork.MainPage(addUserToList, ListOfUsers);
+                    MainNetwork.MainPage(addUserToList);
                 }
                 else
                 {
