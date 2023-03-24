@@ -32,7 +32,7 @@
             var input = Console.ReadLine();
             if (currentProfile.Password == input)
             {
-                MainNetwork.MainPage(currentProfile);
+                MainNetwork.MainPage(currentProfile, ListOfUsers);
             }
             else
             {
@@ -82,12 +82,14 @@
                 if (endInput.ToLower() == "yes")
                 {
                     var addUserToList = new Profile(firstname, lastname, email, password1);
-                    Console.WriteLine("NEW USER CREATED\n");
+                    Console.WriteLine("NEW USER CREATED...\n");
                     Thread.Sleep(2000);
-                    MainNetwork.MainPage(addUserToList);
+                    MainNetwork.MainPage(addUserToList, ListOfUsers);
                 }
                 else
                 {
+                    Console.WriteLine("Returning...\n");
+                    Thread.Sleep(2000);
                     Console.Clear();
                     var newStart = new StartPage();
                     newStart.Start(ListOfUsers);
@@ -96,7 +98,7 @@
         }
         public static void LogOut(List<Profile> ListOfUsers)
         {
-            Console.WriteLine("You are now logged out.\n");
+            Console.WriteLine("You are now logged out...\n");
             Thread.Sleep(2000);
             Console.Clear();
             var newStart = new StartPage();
